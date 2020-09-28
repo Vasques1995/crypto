@@ -117,14 +117,11 @@ abstract class _HomeControllerBase with Store {
   }
 
   String cesarEncrypt(String key, String message) {
-    //TODO Circular do 33 ~ 126 -> 94 char
-    //TODO Checar letras maiúsculas/minúsculas
-    //TODO 109 + 500 = 609 / 500
     String encryptedText = "";
     int intKey = int.parse(key);
     for (int r = 0; r < message.length; r++) {
       String encryptedChar =
-          String.fromCharCode(message.codeUnitAt(r) + intKey);
+          String.fromCharCode(message.runes.toList()[r] + intKey);
       encryptedText += encryptedChar;
     }
     return encryptedText;
@@ -135,7 +132,7 @@ abstract class _HomeControllerBase with Store {
     int intKey = int.parse(key);
     for (int r = 0; r < message.length; r++) {
       String encryptedChar =
-          String.fromCharCode(message.codeUnitAt(r) - intKey);
+          String.fromCharCode(message.runes.toList()[r]- intKey);
       plainText += encryptedChar;
     }
     return plainText;
