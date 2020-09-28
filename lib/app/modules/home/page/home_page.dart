@@ -71,6 +71,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                 child: InkWell(
                                   onTap: () {
                                     controller.encrypt();
+                                    hideKeyboard(context);
                                   },
                                   child: Container(
                                     width: MediaQuery.of(context).size.width *
@@ -125,6 +126,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                 child: InkWell(
                                   onTap: () {
                                     controller.decrypt();
+                                    hideKeyboard(context);
                                   },
                                   child: Container(
                                     width: MediaQuery.of(context).size.width *
@@ -196,5 +198,12 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         ),
       ),
     );
+  }
+
+  void hideKeyboard(BuildContext context) {
+    FocusScopeNode currentFocus = FocusScope.of(context);
+    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+      FocusManager.instance.primaryFocus.unfocus();
+    }
   }
 }
