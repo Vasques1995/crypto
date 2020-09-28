@@ -32,7 +32,7 @@ abstract class _HomeControllerBase with Store {
   encrypt() async {
     String key = keyController.text;
     String message = messageController.text;
-    String result;
+    String result = "Resultado do bug :D";
     bool isEncrypt = true;
     switch (cypherEnum) {
       case Cypher.CESAR:
@@ -62,7 +62,7 @@ abstract class _HomeControllerBase with Store {
   decrypt() async {
     String key = keyController.text;
     String message = messageController.text;
-    String result;
+    String result = "Resultado do bug :D";
     bool isEncrypt = false;
     switch (cypherEnum) {
       case Cypher.CESAR:
@@ -198,6 +198,7 @@ abstract class _HomeControllerBase with Store {
     Encrypter encrypter =
         Encrypter(AES(aesKey, mode: encryptPackage.AESMode.cbc));
     IV iv = IV.fromLength(16);
-    return encrypter.decrypt(encrypter.encrypt(message, iv: iv), iv: iv);
+    String decrypted = encrypter.decrypt(encryptPackage.Encrypted.from64(message), iv: iv);
+    return decrypted;
   }
 }
