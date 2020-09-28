@@ -40,6 +40,7 @@ dependencies:
   flutter_modular: ^2.0.0+1
   flutter_des: ^1.1.1
   encrypt: 4.0.3
+  clipboard_manager: ^0.0.4
   flutter:
     sdk: flutter
 
