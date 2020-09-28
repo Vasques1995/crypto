@@ -53,7 +53,7 @@ abstract class _HomeControllerBase with Store {
         break;
     }
     CryptModel auxCrypt =
-    CryptModel(cypherEnum, key, message, result, isEncrypt);
+        CryptModel(cypherEnum, key, message, result, isEncrypt);
     crypts.add(auxCrypt);
     crypts = crypts;
   }
@@ -83,7 +83,7 @@ abstract class _HomeControllerBase with Store {
         break;
     }
     CryptModel auxCrypt =
-    CryptModel(cypherEnum, key, message, result, isEncrypt);
+        CryptModel(cypherEnum, key, message, result, isEncrypt);
     crypts.add(auxCrypt);
     crypts = crypts;
   }
@@ -124,7 +124,7 @@ abstract class _HomeControllerBase with Store {
     int intKey = int.parse(key);
     for (int r = 0; r < message.length; r++) {
       String encryptedChar =
-      String.fromCharCode(message.codeUnitAt(r) + intKey);
+          String.fromCharCode(message.codeUnitAt(r) + intKey);
       encryptedText += encryptedChar;
     }
     return encryptedText;
@@ -135,7 +135,7 @@ abstract class _HomeControllerBase with Store {
     int intKey = int.parse(key);
     for (int r = 0; r < message.length; r++) {
       String encryptedChar =
-      String.fromCharCode(message.codeUnitAt(r) - intKey);
+          String.fromCharCode(message.codeUnitAt(r) - intKey);
       plainText += encryptedChar;
     }
     return plainText;
@@ -144,8 +144,7 @@ abstract class _HomeControllerBase with Store {
   String xorEncrypt(String key, String message) {
     String encryptedText = "";
     //TODO Repetir a chave até ficar do tamanho da mensagem
-    if (key.length < message.length) {
-    }
+    if (key.length < message.length) {}
     // String repeatedKey =
 
     //M: 1001
@@ -166,7 +165,7 @@ abstract class _HomeControllerBase with Store {
     int intKey = int.parse(key);
     for (int r = 0; r < message.length; r++) {
       String encryptedChar =
-      String.fromCharCode(message.codeUnitAt(r) - intKey);
+          String.fromCharCode(message.codeUnitAt(r) - intKey);
       plainText += encryptedChar;
     }
     return plainText;
@@ -180,18 +179,20 @@ abstract class _HomeControllerBase with Store {
   String sdesDecrypt(String key, String message) {}
 
   Future desEncrypt(String key, String message) {
-    return FlutterDes.encryptToHex(message, key);
-
+    return FlutterDes.encryptToBase64(message, key, iv: "12345678");
   }
 
-  Future desDecrypt(String key, String message) {
-    return FlutterDes.decryptFromHex(message, key);
+  Future<String> desDecrypt(String key, String message) async {
+    String decrypted =
+        await FlutterDes.decryptFromBase64(message, key, iv: "12345678");
+    return decrypted;
   }
 
   String aesEncrypt(String key, String message) {
     key = key.padLeft(32);
     encryptPackage.Key aesKey = encryptPackage.Key.fromUtf8(key);
-    Encrypter encrypter = Encrypter(AES(aesKey, mode: encryptPackage.AESMode.cbc));
+    Encrypter encrypter =
+        Encrypter(AES(aesKey, mode: encryptPackage.AESMode.cbc));
     IV iv = IV.fromLength(16);
     return encrypter.encrypt(message, iv: iv).base64;
   }
@@ -199,8 +200,9 @@ abstract class _HomeControllerBase with Store {
   String aesDecrypt(String key, String message) {
     key = key.padLeft(32);
     encryptPackage.Key aesKey = encryptPackage.Key.fromUtf8(key);
-    Encrypter encrypter = Encrypter(AES(aesKey, mode: encryptPackage.AESMode.cbc));
+    Encrypter encrypter =
+        Encrypter(AES(aesKey, mode: encryptPackage.AESMode.cbc));
     IV iv = IV.fromLength(16);
-    return encrypter.decrypt(encrypter.encrypt(message, iv: iv),iv: iv);
+    return encrypter.decrypt(encrypter.encrypt(message, iv: iv), iv: iv);
   }
 }
