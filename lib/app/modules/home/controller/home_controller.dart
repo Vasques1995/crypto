@@ -140,29 +140,27 @@ abstract class _HomeControllerBase with Store {
 
   String xorEncrypt(String key, String message) {
     String encryptedText = "";
-    //TODO Repetir a chave até ficar do tamanho da mensagem
-    if (key.length < message.length) {}
-    // String repeatedKey =
-
-    //M: 1001
-    //K: 1010
-    //R: 0011
-    //Pego caractere por caractere e faço o XOR com a chave
-    // for (int r = 0; r < message.length; r++) {
-    //   int aux = message.codeUnitAt(r);
-    //   int encryptedCharCode = aux ^ intKey;
-    //   String encryptedChar = String.fromCharCode(encryptedCharCode);
-    //   encryptedText += encryptedChar;
-    // }
+    if (key.length < message.length) {
+      key = key.padRight(message.length, key);
+    }
+    for (int r = 0; r < message.length; r++) {
+      int aux = message[r].runes.toList()[0];
+      int encryptedCharCode = aux ^ int.parse(key[r]);
+      String encryptedChar = String.fromCharCode(encryptedCharCode);
+      encryptedText += encryptedChar;
+    }
     return encryptedText;
   }
 
   String xorDecrypt(String key, String message) {
     String plainText = "";
-    int intKey = int.parse(key);
+    if (key.length < message.length) {
+      key = key.padRight(message.length, key);
+    }
     for (int r = 0; r < message.length; r++) {
-      String encryptedChar =
-          String.fromCharCode(message.codeUnitAt(r) - intKey);
+      int aux = message[r].runes.toList()[0];
+      int decryptedCharCode = aux ^ int.parse(key[r]);
+      String encryptedChar = String.fromCharCode(decryptedCharCode);
       plainText += encryptedChar;
     }
     return plainText;
