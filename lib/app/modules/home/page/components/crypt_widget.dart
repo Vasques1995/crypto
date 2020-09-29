@@ -1,4 +1,4 @@
-import 'package:clipboard_manager/clipboard_manager.dart';
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:redes_av1/app/core/model/crypt_model.dart';
@@ -12,7 +12,7 @@ class CryptWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        ClipboardManager.copyToClipBoard(cryptModel.result).then((result) {
+        FlutterClipboard.copy(cryptModel.result).then((result) {
           final snackBar = SnackBar(
             content: Text('Resultado copiado para a clipboard!'),
           );
