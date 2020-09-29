@@ -167,43 +167,46 @@ abstract class _HomeControllerBase with Store {
   }
 
   String sdesEncrypt(String key, String message) {
-    String encryptedText = message.padRight(8);
-    List<String> generatedKeys = generateSDESKeys(key);
-    String key1 = generatedKeys[0];
-    String key2 = generatedKeys[1];
-    String firstPermutation = "";
-    String leftPermuted = "";
-    String rightPermuted = "";
-    String firstRightXorWithK1 = "";
-    //IP 8
-    //1° Passo = Permutação inicial -> 2, 6, 3, 1, 4, 8, 5, 7
-    firstPermutation += key[2];
-    firstPermutation += key[6];
-    firstPermutation += key[3];
-    firstPermutation += key[1];
-    firstPermutation += key[4];
-    firstPermutation += key[8];
-    firstPermutation += key[5];
-    firstPermutation += key[7];
-    String leftSide = encryptedText.substring(0, 4);
-    String rightSide = encryptedText.substring(4);
-    //2° Passo = Expand and Permutate Right Side
-    rightPermuted += rightSide[4];
-    rightPermuted += rightSide[1];
-    rightPermuted += rightSide[2];
-    rightPermuted += rightSide[3];
-    rightPermuted += rightSide[2];
-    rightPermuted += rightSide[3];
-    rightPermuted += rightSide[4];
-    rightPermuted += rightSide[1];
-    //3° Passo = XOR rightPermuted com k1
-    for (int r = 0; r < key1.length; r++) {
-      firstRightXorWithK1 += (int.parse(key1[r]) ^ int.parse(rightPermuted[r])).toString();
-    }
+    // String encryptedText = message.padRight(8);
+    // List<String> generatedKeys = generateSDESKeys(key);
+    // String key1 = generatedKeys[0];
+    // String key2 = generatedKeys[1];
+    // String firstPermutation = "";
+    // String leftPermuted = "";
+    // String rightPermuted = "";
+    // String firstRightXorWithK1 = "";
+    // //IP 8
+    // //1° Passo = Permutação inicial -> 2, 6, 3, 1, 4, 8, 5, 7
+    // firstPermutation += key[2];
+    // firstPermutation += key[6];
+    // firstPermutation += key[3];
+    // firstPermutation += key[1];
+    // firstPermutation += key[4];
+    // firstPermutation += key[8];
+    // firstPermutation += key[5];
+    // firstPermutation += key[7];
+    // String leftSide = encryptedText.substring(0, 4);
+    // String rightSide = encryptedText.substring(4);
+    // //2° Passo = Expand and Permutate Right Side
+    // rightPermuted += rightSide[4];
+    // rightPermuted += rightSide[1];
+    // rightPermuted += rightSide[2];
+    // rightPermuted += rightSide[3];
+    // rightPermuted += rightSide[2];
+    // rightPermuted += rightSide[3];
+    // rightPermuted += rightSide[4];
+    // rightPermuted += rightSide[1];
+    // //3° Passo = XOR rightPermuted com k1
+    // for (int r = 0; r < key1.length; r++) {
+    //   firstRightXorWithK1 += (int.parse(key1[r]) ^ int.parse(rightPermuted[r])).toString();
+    // }
     //I give up :D
+    return 'bug';
   }
 
-  String sdesDecrypt(String key, String message) {}
+  String sdesDecrypt(String key, String message) {
+    return 'bug';
+  }
 
   Future desEncrypt(String key, String message) {
     return FlutterDes.encryptToBase64(message, key, iv: "12345678");

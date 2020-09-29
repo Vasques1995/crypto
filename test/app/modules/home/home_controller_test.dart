@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:redes_av1/app/modules/home/controller/home_controller.dart';
 
 import 'package:redes_av1/app/modules/home/home_module.dart';
 
