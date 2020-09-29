@@ -14,7 +14,7 @@ class CryptWidget extends StatelessWidget {
       onTap: (){
         ClipboardManager.copyToClipBoard(cryptModel.result).then((result) {
           final snackBar = SnackBar(
-            content: Text('Resultado copiado para a clipboard'),
+            content: Text('Resultado copiado para a clipboard!'),
           );
           Scaffold.of(context).showSnackBar(snackBar);
         });
