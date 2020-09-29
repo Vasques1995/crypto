@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_modular/flutter_modular_test.dart';
-import 'package:redes_av1/app/modules/home/page/home_page.dart';
 
 
 void main() {
